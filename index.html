@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thiệp Mời Tốt Nghiệp — Nhất Hà</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital@0;1&family=Roboto:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: linear-gradient(to bottom, #f9f7f3, #e8e2d9);
+      color: #333;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.8;
+      min-height: 100vh;
+      padding: 20px 15px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      overflow: hidden;
+      padding: 40px 30px;
+    }
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      color: #4a2c0d;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .greeting {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.8rem;
+      color: #6b4e31;
+      text-align: center;
+      margin: 30px 0 50px;
+      font-weight: 400;
+    }
+    .intro, .message {
+      font-size: 1.2rem;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 40px;
+    }
+    .highlight {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.4rem;
+      color: #8b5a2b;
+      font-style: italic;
+      margin: 50px 0 30px;
+      text-align: center;
+      position: relative;
+    }
+    .highlight::before, .highlight::after {
+      content: "——";
+      margin: 0 15px;
+      color: #d4af37;
+    }
+    .handwritten {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.1rem;
+      line-height: 1.6;
+      color: #5c4033;
+      text-align: center;
+      white-space: pre-line;
+      margin: 60px 0;
+      font-weight: 600;
+    }
+    .thanks {
+      font-size: 1.4rem;
+      margin-top: 50px;
+      color: #444;
+    }
+    .heart {
+      color: #e74c3c;
+      font-size: 1.6rem;
+    }
+
+    /* Poster toggle */
+    .poster-section {
+      position: relative;
+      max-width: 700px;
+      height: 500px;
+      margin: 60px auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      cursor: pointer;
+    }
+    .poster {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.6s ease-in-out;
+      opacity: 0;
+    }
+    .poster.active {
+      opacity: 1;
+    }
+
+    /* Carousel 10 ảnh - lướt tay, infinite loop, ẩn thanh trượt */
+    .carousel-section {
+      margin: 60px 0;
+    }
+    .carousel-container {
+      overflow-x: auto;
+      width: 100%;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;          /* Ẩn thanh trượt Firefox */
+      -ms-overflow-style: none;       /* Ẩn thanh trượt IE/Edge */
+    }
+    .carousel-container::-webkit-scrollbar {
+      display: none;                  /* Ẩn thanh trượt Chrome/Safari */
+    }
+    .carousel-track {
+      display: flex;
+      gap: 24px;
+      padding: 0 20px;
+    }
+    .carousel-track img {
+      flex: 0 0 30%;                  /* ~3 ảnh trên desktop */
+      width: 30%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      scroll-snap-align: center;
+      transition: transform 0.3s ease;
+    }
+    .carousel-track img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .carousel-track img { flex: 0 0 45%; width: 45%; }
+    }
+    @media (max-width: 480px) {
+      .carousel-track img { flex: 0 0 80%; width: 80%; }
+    }
+
+    /* Save the date */
+    .save-date {
+      background: #fdfaf5;
+      border: 2px dashed #d4af37;
+      border-radius: 15px;
+      padding: 40px 20px;
+      margin: 60px auto;
+      max-width: 700px;
+      text-align: center;
+    }
+    .save-date h2 {
+      color: #8b5a2b;
+      margin-bottom: 30px;
+    }
+    .save-date p {
+      font-size: 1.4rem;
+      margin: 15px 0;
+    }
+    .date {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      color: #6b4e31;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="greeting">Nhất Hà — Becoming</h1>
+
+    <div class="intro">
+      <p>Xin chào tất cả những ai đã vào đến đây,<br>
+      có thể là bạn tò mò về cái thiệp mời này<br>
+      hoặc cậu khá là “quý” mình.</p>
+    </div>
+
+    <div class="highlight">POSTER 1 - 2</div>
+
+    <div class="poster-section" id="posterToggle">
+      <!-- Thay bằng link ảnh thật của bạn -->
+      <img class="poster active" src="1.jpg" alt="Poster 1" id="poster1">
+      <img class="poster" src="2.jpg" alt="Poster 2" id="poster2">
+    </div>
+
+    <p class="message" style="font-style: italic; font-size: 1.25rem; text-align: center; margin: 40px 0;">
+      Xin chào tất cả những ai đã đi đến đây,<br>
+      có thể cậu chỉ vô tình tò mò về chiếc thiệp mời này,<br>
+      hoặc cũng có thể cậu là một người thật sự “quý” tớ.
+    </p>
+
+    <div class="highlight">Nhạc -</div>
+
+    <p style="text-align: center; font-style: italic; margin: 40px 0; color: #666;">
+      Hmmm… Bởi vì tớ chưa từng có một buổi lễ tốt nghiệp đúng nghĩa,<br>
+      nên ngày này sẽ là một dấu mốc rất đặc biệt - khoảnh khắc chỉ đến một lần trong đời của tớ.<br>
+      Nếu cậu có thời gian và muốn ở bên tớ trong giây phút ấy,<br>
+      tớ rất mong được gặp cậu để cùng nhau lưu giữ thêm một kỷ niệm thật đẹp.
+    </p>
+
+    <!-- 10 ảnh lướt tay, infinite loop, ẩn thanh trượt -->
+    <div class="carousel-section">
+      <div class="highlight">Những kỷ niệm đẹp</div>
+      <div class="carousel-container" id="carousel">
+        <div class="carousel-track" id="track">
+          <!-- Ảnh gốc -->
+          <img src="1.jpg" alt="Kỷ niệm 1">
+          <img src="2.jpg" alt="Kỷ niệm 2">
+          <img src="3.jpg" alt="Kỷ niệm 3">
+          <img src="4.jpg" alt="Kỷ niệm 4">
+          <img src="5.jpg" alt="Kỷ niệm 5">
+          <img src="6.jpg" alt="Kỷ niệm 6">
+          <img src="7.jpg" alt="Kỷ niệm 7">
+          <img src="8.jpg" alt="Kỷ niệm 8">
+          <img src="9.jpg" alt="Kỷ niệm 9">
+          <img src="10.jpg" alt="Kỷ niệm 10">
+
+          <!-- Duplicate để tạo infinite -->
+          <img src="1.jpg" alt="Kỷ niệm 1">
+          <img src="2.jpg" alt="Kỷ niệm 2">
+          <img src="3.jpg" alt="Kỷ niệm 3">
+          <img src="4.jpg" alt="Kỷ niệm 4">
+          <img src="5.jpg" alt="Kỷ niệm 5">
+          <img src="6.jpg" alt="Kỷ niệm 6">
+          <img src="7.jpg" alt="Kỷ niệm 7">
+          <img src="8.jpg" alt="Kỷ niệm 8">
+          <img src="9.jpg" alt="Kỷ niệm 9">
+          <img src="10.jpg" alt="Kỷ niệm 10">
+          <img src="10.jpg" alt="Kỷ niệm 10">
+        </div>
+      </div>
+    </div>
+
+    <div class="handwritten">
+      Tớ chỉ muốn nói là cảm ơn cậu rất nhiều,,  
+      cảm ơn cậu vì đã đồng hành cùng tớ trong một đoạn đường  
+      trong 22 năm cuộc đời vừa qua của tớ.  
+      Dù cậu vẫn đang ở đây hay đã rời đi,  
+      tớ cũng cảm ơn những kỷ niệm của chúng mình.
+    </div>
+
+    <p class="thanks">Cảm ơn cậu vì đã đọc đến đây <span class="heart">🤍</span></p>
+
+    <div class="save-date">
+      <h2>Save the date</h2>
+      <p class="date">Ngày 7 tháng 3 năm 2026</p>
+      <p><strong>Thời gian:</strong> [Điền giờ cụ thể, ví dụ: 17:00 - 21:00]</p>
+      <p><strong>Địa điểm:</strong> Trung tâm Hội nghị Quốc gia</p>
+      <p style="margin-top: 30px; font-style: italic;">Tớ rất mong được gặp cậu!</p>
+    </div>
+  </div>
+
+  <script>
+    // Toggle poster
+    const posterToggle = document.getElementById('posterToggle');
+    const poster1 = document.getElementById('poster1');
+    const poster2 = document.getElementById('poster2');
+    let isPoster1 = true;
+
+    posterToggle.addEventListener('click', () => {
+      if (isPoster1) {
+        poster1.classList.remove('active');
+        poster2.classList.add('active');
+      } else {
+        poster2.classList.remove('active');
+        poster1.classList.add('active');
+      }
+      isPoster1 = !isPoster1;
+    });
+
+    // Infinite loop cho carousel (reset khi scroll đến cuối)
+    const carousel = document.getElementById('carousel');
+    const track = document.getElementById('track');
+
+    // Số lượng ảnh gốc (không tính duplicate)
+    const originalCount = 10;
+    // Khi scroll gần đến cuối, reset về đầu mà không thấy giật
+    carousel.addEventListener('scroll', () => {
+      const scrollLeft = carousel.scrollLeft;
+      const scrollWidth = carousel.scrollWidth;
+      const clientWidth = carousel.clientWidth;
+
+      // Nếu scroll gần đến cuối (trong 1 ảnh cuối cùng)
+      if (scrollLeft >= (scrollWidth - clientWidth - 100)) {
+        // Reset về đầu mà không animation (để mượt)
+        carousel.scrollLeft = 0;
+      }
+      // Nếu scroll về âm hoặc gần đầu quá (trường hợp lướt ngược)
+      else if (scrollLeft <= 0) {
+        // Có thể reset về cuối nếu cần, nhưng ở đây chỉ cần giữ nguyên
+      }
+    });
+  </script>
+
+</body>
+</html>
