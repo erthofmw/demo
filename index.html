@@ -193,6 +193,29 @@
       .thanks-main { font-size: 1.25rem; }
       .carousel-track img { flex: 0 0 75%; width: 75%; }
     }
+    #musicControl {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    #playPauseBtn {
+      background: #7d0e21;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: all 0.3s;
+    }
+    #playPauseBtn:hover {
+      background: #a0142c;
+      transform: scale(1.1);
+    }
+
   </style>
 </head>
 <body>
@@ -307,6 +330,16 @@
       (Cảm ơn những năm tháng cấp 1 cấp 2 đã có những buổi học ôn thi hsg thật vui, cảm ơn những buổi chiều học thêm năm cấp 3 bị nhắc nhở vì trò chuyện trong lớp, cảm ơn những buổi tối lông bông không về nhà cùng các bạn, cảm ơn GJD5, cảm ơn ALIFE, cảm ơn Clover, cảm ơn GMC, cảm ơn Tân binh Greenwich 2022, cảm ơn Thủ Lĩnh Greenwich 2023, cảm ơn sự kiện được yêu thích nhất Clover - Fly High, cảm ơn Top 2 CLB xuất sắc nhất,… cảm ơn vì đã cho mình là một phần của các bạn).
     </p>
   </div>
+<!-- NHẠC NỀN - TỰ ĐỘNG PHÁT (muted ban đầu, bỏ muted khi tương tác) -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="vitamin_c.mp3" type="audio/mpeg">  <!-- file nhạc của bạn -->
+    Trình duyệt không hỗ trợ audio.
+  </audio>
+
+  <!-- Nút tạm dừng/phát (dùng sau nếu muốn tắt tiếng) -->
+  <div id="musicControl">
+    <button id="playPauseBtn">❚❚</button>  <!-- mặc định pause vì tự phát -->
+  </div>
 
   <script>
     const posterToggle = document.getElementById('posterToggle');
@@ -338,7 +371,45 @@
         }
       });
     }
+
+const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('playPauseBtn');
+
+    music.volume = 0.25;  // âm lượng nhẹ, dễ chịu
+
+    // Phát nhạc tự động ngay khi load
+    music.play().then(() => {
+      console.log("Nhạc tự động phát thành công");
+      btn.textContent = '❚❚';  // icon pause
+    }).catch(error => {
+      console.log("Autoplay bị chặn, chờ tương tác để có tiếng");
+      // Nếu bị chặn, sẽ phát khi người dùng tương tác
+    });
+
+    // Khi người dùng click/chạm bất kỳ đâu trên trang → bỏ muted (nếu có) và phát tiếng
+    document.addEventListener('click', function enableSound() {
+      if (music.muted) {
+        music.muted = false;
+        music.play();  // đảm bảo phát tiếng
+        btn.textContent = '❚❚';
+      }
+      // Chỉ chạy 1 lần
+      document.removeEventListener('click', enableSound);
+    }, { once: true });
+
+    // Nút tạm dừng/phát thủ công (nếu người dùng muốn tắt)
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();  // ngăn nút kích hoạt listener click toàn trang
+      if (music.paused) {
+        music.play();
+        btn.textContent = '❚❚';
+      } else {
+        music.pause();
+        btn.textContent = '▶';
+      }
+    });
   </script>
 
 </body>
 </html>
+
