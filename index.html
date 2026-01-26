@@ -33,14 +33,14 @@
 
     /* Tiêu đề: dùng Anton để đậm đều hoàn toàn, không nét mỏng nét dày */
     .title-main {
-      font-family: 'Anton', sans-serif;     /* font đậm đều, extra bold, không contrast */
-      font-weight: 400;                     /* Anton chỉ có 1 weight, tự động siêu đậm */
-      font-size: 4.8rem;                    /* to để chữ đậm và nổi bật rõ */
+      font-family: 'Anton', sans-serif;
+      font-weight: 400;
+      font-size: 4.8rem;
       color: #7d0e21;
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: 0.18em;               /* giãn vừa phải, không quá xa */
-      margin: 30px 0 60px;
+      letter-spacing: 0.18em;
+      margin: 30px auto 60px;          /* thêm auto để chắc chắn căn giữa */
       white-space: nowrap;
       display: block;
       line-height: 1.0;
@@ -107,8 +107,9 @@
     .poster-section {
       position: relative;
       width: 100%;
+      max-width: 800px;                /* kích thước bạn muốn, có thể chỉnh */
       aspect-ratio: 1587 / 2245;
-      margin: 40px auto 60px;
+      margin: 40px auto 60px;          /* căn giữa bằng auto */
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 12px 40px rgba(0,0,0,0.18);
@@ -207,6 +208,10 @@
     <div class="body-text">
       Xin chào tất cả những ai đã đi đến đây,<br>
       có thể cậu chỉ vô tình dừng lại vì tò mò về chiếc thiệp mời này, và tớ rất mong cậu sẽ ở lại thêm một chút nữa.
+    </div>
+
+    <div class="invite-poster-container">
+      <img src="BECOMING.png" alt="BECOMING">
     </div>
 
     <div class="body-text">
