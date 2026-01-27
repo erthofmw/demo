@@ -14,24 +14,28 @@
       box-sizing: border-box;
     }
     body {
-      background: linear-gradient(to bottom, #f9f7f3, #e8e2d9);
+      background: #ffffff;          /* Nền trắng thuần cho phần ngoài khung */
       color: #333;
       font-family: 'Roboto', sans-serif;
       line-height: 1.9;
       min-height: 100vh;
       padding: 20px 15px;
     }
+
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      background: white;
+      /* Background ảnh đậm hơn: giảm opacity overlay để ảnh nổi bật rõ hơn */
+      background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.92)),
+                  url('background.jpg') center/cover no-repeat;
       border-radius: 20px;
       box-shadow: 0 10px 40px rgba(0,0,0,0.08);
       overflow: hidden;
       padding: 50px 40px;
+      color: #333;  /* Giữ chữ dễ đọc */
     }
 
-    /* Tiêu đề: dùng Anton để đậm đều hoàn toàn, không nét mỏng nét dày */
+    /* Tiêu đề */
     .title-main {
       font-family: 'Anton', sans-serif;
       font-weight: 400;
@@ -40,7 +44,7 @@
       text-align: center;
       text-transform: uppercase;
       letter-spacing: 0.18em;
-      margin: 30px auto 60px;          /* thêm auto để chắc chắn căn giữa */
+      margin: 30px auto 60px;
       white-space: nowrap;
       display: block;
       line-height: 1.0;
@@ -67,7 +71,6 @@
       margin: 0 auto 50px;
     }
 
-    /* Phần cảm ơn - giữ nguyên */
     .thanks-main {
       font-family: 'Dancing Script', cursive;
       font-style: italic;
@@ -81,12 +84,10 @@
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-
       text-shadow: 
         0 0 0.6px rgba(0,0,0,0.9),
         0 0 1px rgba(0,0,0,0.7);
     }
-
 
     .thanks-long {
       font-size: 0.9rem;
@@ -107,9 +108,9 @@
     .poster-section {
       position: relative;
       width: 100%;
-      max-width: 800px;                /* kích thước bạn muốn, có thể chỉnh */
+      max-width: 800px;
       aspect-ratio: 1587 / 2245;
-      margin: 40px auto 60px;          /* căn giữa bằng auto */
+      margin: 40px auto 60px;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 12px 40px rgba(0,0,0,0.18);
@@ -193,6 +194,7 @@
       .thanks-main { font-size: 1.25rem; }
       .carousel-track img { flex: 0 0 75%; width: 75%; }
     }
+
     #musicControl {
       position: fixed;
       bottom: 20px;
@@ -215,7 +217,6 @@
       background: #a0142c;
       transform: scale(1.1);
     }
-
   </style>
 </head>
 <body>
@@ -234,7 +235,7 @@
     </div>
 
     <div class="invite-poster-container">
-      <img src="BECOMING.png" alt="BECOMING">
+      <img src="becoming.png" alt="BECOMING">
     </div>
 
     <div class="body-text">
@@ -244,7 +245,6 @@
     </div>
 
     <div class="carousel-section">
-      <!-- <div class="highlight">Những kỷ niệm đẹp</div> -->
       <div class="carousel-container" id="carousel">
         <div class="carousel-track" id="track">
           <img src="1.png" alt="Kỷ niệm 1">
@@ -274,7 +274,8 @@
           <img src="25.png" alt="Kỷ niệm 25">
           <img src="26.png" alt="Kỷ niệm 26">
           <img src="27.png" alt="Kỷ niệm 27">
-          <!-- Duplicate -->
+          <img src="28.jpg" alt="Kỷ niệm 28">
+          <!-- Duplicate để loop mượt -->
           <img src="1.png" alt="Kỷ niệm 1">
           <img src="2.png" alt="Kỷ niệm 2">
           <img src="3.png" alt="Kỷ niệm 3">
@@ -302,7 +303,8 @@
           <img src="25.png" alt="Kỷ niệm 25">
           <img src="26.png" alt="Kỷ niệm 26">
           <img src="27.png" alt="Kỷ niệm 27">
-          <img src="27.png" alt="Kỷ niệm 27">
+          <img src="28.jpg" alt="Kỷ niệm 28">
+          <img src="28.jpg" alt="Kỷ niệm 28">
         </div>
       </div>
     </div>
@@ -330,15 +332,16 @@
       (Cảm ơn những năm tháng cấp 1 cấp 2 đã có những buổi học ôn thi hsg thật vui, cảm ơn những buổi chiều học thêm năm cấp 3 bị nhắc nhở vì trò chuyện trong lớp, cảm ơn những buổi tối lông bông không về nhà cùng các bạn, cảm ơn GJD5, cảm ơn ALIFE, cảm ơn Clover, cảm ơn GMC, cảm ơn Tân binh Greenwich 2022, cảm ơn Thủ Lĩnh Greenwich 2023, cảm ơn sự kiện được yêu thích nhất Clover - Fly High, cảm ơn Top 2 CLB xuất sắc nhất,… cảm ơn vì đã cho mình là một phần của các bạn).
     </p>
   </div>
-<!-- NHẠC NỀN - TỰ ĐỘNG PHÁT (muted ban đầu, bỏ muted khi tương tác) -->
-  <audio id="bgMusic" autoplay loop>
-    <source src="vitamin_c.mp3" type="audio/mpeg">  <!-- file nhạc của bạn -->
+
+  <!-- NHẠC NỀN -->
+  <audio id="bgMusic" loop preload="auto">
+    <source src="vitamin_c.mp3" type="audio/mpeg">
     Trình duyệt không hỗ trợ audio.
   </audio>
 
-  <!-- Nút tạm dừng/phát (dùng sau nếu muốn tắt tiếng) -->
+  <!-- Nút điều khiển nhạc -->
   <div id="musicControl">
-    <button id="playPauseBtn">❚❚</button>  <!-- mặc định pause vì tự phát -->
+    <button id="playPauseBtn">▶</button>  <!-- Ban đầu hiển thị play -->
   </div>
 
   <script>
@@ -372,34 +375,49 @@
       });
     }
 
-const music = document.getElementById('bgMusic');
+    const music = document.getElementById('bgMusic');
     const btn = document.getElementById('playPauseBtn');
 
-    music.volume = 0.25;  // âm lượng nhẹ, dễ chịu
+    music.volume = 0.25;
 
-    // Phát nhạc tự động ngay khi load
-    music.play().then(() => {
-      console.log("Nhạc tự động phát thành công");
-      btn.textContent = '❚❚';  // icon pause
-    }).catch(error => {
-      console.log("Autoplay bị chặn, chờ tương tác để có tiếng");
-      // Nếu bị chặn, sẽ phát khi người dùng tương tác
-    });
+    function tryPlay() {
+      music.play()
+        .then(() => {
+          console.log("Nhạc đang phát");
+          btn.textContent = '❚❚';
+        })
+        .catch(err => {
+          console.log("Autoplay bị chặn:", err);
+          btn.textContent = '▶';
+        });
+    }
 
-    // Khi người dùng click/chạm bất kỳ đâu trên trang → bỏ muted (nếu có) và phát tiếng
-    document.addEventListener('click', function enableSound() {
-      if (music.muted) {
+    // Thử phát ngay khi load
+    tryPlay();
+
+    // Khi tương tác lần đầu (click hoặc scroll) → unmute + play
+    let hasInteracted = false;
+
+    document.addEventListener('click', function firstInteraction() {
+      if (!hasInteracted) {
+        hasInteracted = true;
         music.muted = false;
-        music.play();  // đảm bảo phát tiếng
-        btn.textContent = '❚❚';
+        tryPlay();
+        document.removeEventListener('click', firstInteraction);
       }
-      // Chỉ chạy 1 lần
-      document.removeEventListener('click', enableSound);
     }, { once: true });
 
-    // Nút tạm dừng/phát thủ công (nếu người dùng muốn tắt)
+    document.addEventListener('scroll', () => {
+      if (!hasInteracted) {
+        hasInteracted = true;
+        music.muted = false;
+        tryPlay();
+      }
+    }, { once: true });
+
+    // Nút play/pause thủ công
     btn.addEventListener('click', (e) => {
-      e.stopPropagation();  // ngăn nút kích hoạt listener click toàn trang
+      e.stopPropagation();
       if (music.paused) {
         music.play();
         btn.textContent = '❚❚';
@@ -412,4 +430,3 @@ const music = document.getElementById('bgMusic');
 
 </body>
 </html>
-
