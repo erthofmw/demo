@@ -40,7 +40,7 @@
       padding: 0 40px 50px 40px;
     }
 
-    /* Ảnh góc trên bên PHẢI - bên NGOÀI thiệp */
+    /* Ảnh góc trên bên PHẢI */
     .profile-corner {
       position: fixed;
       top: 25px;
@@ -62,7 +62,6 @@
       border-color: #4d5768;
     }
 
-    /* Các phần còn lại giữ nguyên */
     .becoming-container {
       width: 100%;
       margin: 20px 0;
@@ -79,14 +78,7 @@
       box-shadow: none;
     }
 
-    .welcome-text {
-      font-size: 1.28rem;
-      text-align: center;
-      max-width: 820px;
-      margin: 0 auto 10px;
-    }
-
-    .body-text {
+    .welcome-text, .body-text {
       font-size: 1.28rem;
       text-align: center;
       max-width: 820px;
@@ -169,6 +161,7 @@
     .carousel-section {
       margin: 60px auto 60px;
       max-width: 1100px;
+      position: relative;
     }
     .carousel-container {
       overflow-x: auto;
@@ -198,6 +191,25 @@
     }
     .carousel-track img:hover {
       transform: scale(1.05);
+    }
+
+    /* Swipe hint */
+    .swipe-hint {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.8rem;
+      color: #7d0e21;
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 5;
+      animation: swipeAnimate 2.2s ease-in-out infinite;
+      transition: opacity 0.8s ease;
+    }
+    @keyframes swipeAnimate {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%      { transform: translateX(-50%) translateY(-12px); }
     }
 
     .invite-poster-container {
@@ -243,13 +255,21 @@
       opacity: 0.9;
     }
 
+    /* Hiệu ứng fade khi cuộn */
+    .fade-on-scroll {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+    }
+    .fade-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* Responsive */
     @media (max-width: 1024px) {
       .inner-content { padding: 0 30px 50px 30px; }
       .becoming-container { margin: 25px 0; }
-      .welcome-text { margin: 0 auto 10px; }
-      .body-text { margin: 0 auto 20px; }
-      .title-main { margin: 0 0 25px 0; }
       .profile-corner { top: 22px; right: 30px; }
       .corner-profile { width: 80px; height: 80px; }
       .music-player img { width: 90px; height: 90px; }
@@ -259,66 +279,64 @@
       .container { padding: 40px 0 0 0; }
       .inner-content { padding: 0 25px 50px 25px; }
       .becoming-container { margin: 20px 0; }
-      .welcome-text { margin: 0 auto 8px; }
-      .body-text { margin: 0 auto 15px; }
-      .title-main { margin: 0 0 20px 0; }
+      .title-main { font-size: 3.8rem; }
       .profile-corner { top: 18px; right: 25px; }
       .corner-profile { width: 70px; height: 70px; border-width: 2.5px; }
       .music-player img { width: 80px; height: 80px; }
       .music-player { bottom: 25px; right: 25px; }
       .music-player p { font-size: 0.9rem; }
+      .carousel-track img { flex: 0 0 45%; width: 45%; }
     }
     @media (max-width: 480px) {
       .inner-content { padding: 0 15px 50px 15px; }
-      .becoming-container { margin: 15px 0; }
-      .welcome-text { margin: 0 auto 8px; }
-      .body-text { margin: 0 auto 10px; }
-      .title-main { margin: 0 0 15px 0; }
+      .title-main { font-size: 3rem; }
       .profile-corner { top: 15px; right: 20px; }
       .corner-profile { width: 60px; height: 60px; }
       .music-player img { width: 70px; height: 70px; }
       .music-player { bottom: 20px; right: 20px; }
       .music-player p { font-size: 0.85rem; }
+      .carousel-track img { flex: 0 0 70%; width: 70%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Ảnh góc trên bên PHẢI - bên NGOÀI thiệp -->
+  <!-- Ảnh góc trên bên PHẢI -->
   <div class="profile-corner">
     <a href="https://greenwich.edu.vn/co-nang-2k3-tro-thanh-thu-linh-sinh-vien-tai-greenwich-viet-nam-co-so-ha-noi/?fbclid=IwY2xjawPlvhlleHRuA2FlbQIxMABicmlkETFCMnEzamdHU2VuUHdFeUtTc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHgVVODO1696HGmOko1R06i4C3_99BI1Kwsa5OJVfPQecmCubAdjdVzN-LCxO_aem_pBF7vg9c5q0O0rBpuWHj_w" 
-    target="_blank" rel="noopener noreferrer" title="Bật mí nho nhỏ về mình!">
+    target="_blank" rel="noopener noreferrer" title="Thủ lĩnh Greenwich 2023">
       <img src="poster_1.png" alt="Nhất Hà" class="corner-profile">
     </a>
   </div>
 
   <div class="container">
     <div class="inner-content">
-      <h1 class="title-main">NHAT HA - BECOMING</h1>
+      <h1 class="title-main fade-on-scroll">NHAT HA - BECOMING</h1>
 
-      <div class="poster-section" id="posterToggle">
+      <div class="poster-section fade-on-scroll" id="posterToggle">
         <img class="poster active" src="poster_1.png" alt="Poster 1" id="poster1">
         <img class="poster" src="poster_2.png" alt="Poster 2" id="poster2">
       </div>
 
-      <div class="welcome-text">
+      <div class="welcome-text fade-on-scroll">
         Xin chào tất cả những ai đã đi đến đây,<br>
         có thể cậu chỉ vô tình dừng lại vì tò mò về chiếc thiệp mời này, và tớ rất mong cậu sẽ ở lại thêm một chút nữa.
       </div>
     </div>
 
-    <div class="becoming-container">
+    <div class="becoming-container fade-on-scroll">
       <img src="becoming.png" alt="BECOMING">
     </div>
 
     <div class="inner-content">
-      <div class="body-text">
+      <div class="body-text fade-on-scroll">
         Lễ tốt nghiệp với tớ, đây là khoảnh khắc chỉ có duy nhất 1 lần. Là lúc tớ có thể chậm lại một chút để nhìn về quãng thời gian học sinh – sinh viên đã đi qua.<br><br>
         Ở đó có những nỗ lực thầm lặng, những lần vấp ngã, những niềm vui rất nhỏ, và cả những con người đã đồng hành cùng tớ trên suốt chặng đường ấy.<br><br>
         Một chương đời khẽ khép lại, để tớ sẵn sàng bước tiếp với tất cả sự biết ơn và trân trọng.
       </div>
 
-      <div class="carousel-section">
+      <div class="carousel-section fade-on-scroll">
+        <!-- <div class="swipe-hint" id="swipeHint"> Vuốt sang trái / phải</div> -->
         <div class="carousel-container" id="carousel">
           <div class="carousel-track" id="track">
             <img src="1.png" alt="Kỷ niệm 1">
@@ -349,7 +367,7 @@
             <img src="26.png" alt="Kỷ niệm 26">
             <img src="27.png" alt="Kỷ niệm 27">
             <img src="28.jpg" alt="Kỷ niệm 28">
-            <!-- Duplicate -->
+            <!-- Duplicate để loop mượt -->
             <img src="1.png" alt="Kỷ niệm 1">
             <img src="2.png" alt="Kỷ niệm 2">
             <img src="3.png" alt="Kỷ niệm 3">
@@ -378,12 +396,11 @@
             <img src="26.png" alt="Kỷ niệm 26">
             <img src="27.png" alt="Kỷ niệm 27">
             <img src="28.jpg" alt="Kỷ niệm 28">
-            <img src="28.jpg" alt="Kỷ niệm 28">
           </div>
         </div>
       </div>
 
-      <div class="thanks-main">
+      <div class="thanks-main fade-on-scroll">
         Tớ chỉ muốn nói là cảm ơn rất nhiều.<br>
         Cảm ơn tất cả những người bạn đã xuất hiện trong suốt 22 năm vừa qua của tớ,<br>
         cảm ơn tất cả người anh người chị đã cho em thêm định hướng,<br>
@@ -393,15 +410,15 @@
         tớ vẫn trân trọng và biết ơn tất cả những kỷ niệm mà chúng mình từng có.
       </div>
 
-      <div class="invite-poster-container">
+      <div class="invite-poster-container fade-on-scroll">
         <img src="date.png" alt="Lời mời tốt nghiệp">
       </div>
 
-      <p style="text-align: center; margin: 40px 0; font-size: 1.4rem;">
+      <p style="text-align: center; margin: 40px 0; font-size: 1.4rem;" class="fade-on-scroll">
         Cảm ơn cậu vì đã ở đây. <span class="heart">🤍</span>
       </p>
 
-      <p class="thanks-long">
+      <p class="thanks-long fade-on-scroll">
         Chiếc web này sẽ là nơi tớ lưu giữ những kỷ niệm đẹp nhất của tuổi 22<br><br>
         (Cảm ơn những năm tháng cấp 1 cấp 2 đã có những buổi học ôn thi hsg thật vui, cảm ơn những buổi chiều học thêm năm cấp 3 bị nhắc nhở vì trò chuyện trong lớp, cảm ơn những buổi tối lông bông không về nhà cùng các bạn, cảm ơn GJD5, cảm ơn ALIFE, cảm ơn Clover, cảm ơn GMC, cảm ơn Tân binh Greenwich 2022, cảm ơn Thủ Lĩnh Greenwich 2023, cảm ơn sự kiện được yêu thích nhất Clover - Fly High, cảm ơn Top 2 CLB xuất sắc nhất,… cảm ơn vì đã cho mình là một phần của các bạn).
       </p>
@@ -421,7 +438,7 @@
   </audio>
 
   <script>
-    // Script giữ nguyên như cũ
+    // 1. Toggle poster
     const posterToggle = document.getElementById('posterToggle');
     const poster1 = document.getElementById('poster1');
     const poster2 = document.getElementById('poster2');
@@ -440,6 +457,7 @@
       });
     }
 
+    // 2. Carousel loop khi cuộn đến cuối
     const carousel = document.getElementById('carousel');
     if (carousel) {
       carousel.addEventListener('scroll', () => {
@@ -452,12 +470,28 @@
       });
     }
 
+    // 3. Ẩn swipe hint sau khi vuốt lần đầu
+    const swipeHint = document.getElementById('swipeHint');
+    let hasScrolledCarousel = false;
+    if (carousel && swipeHint) {
+      carousel.addEventListener('scroll', () => {
+        if (!hasScrolledCarousel) {
+          hasScrolledCarousel = true;
+          swipeHint.style.opacity = '0';
+          setTimeout(() => {
+            swipeHint.style.display = 'none';
+          }, 800);
+        }
+      }, { once: false });
+    }
+
+    // 4. Music player
     const music = document.getElementById('bgMusic');
     const discImg = document.getElementById('discImg');
     const musicStatus = document.getElementById('musicStatus');
     const musicPlayer = document.getElementById('musicPlayer');
 
-    music.volume = 0.25;
+    if (music) music.volume = 0.25;
 
     function tryPlay() {
       music.play()
@@ -472,17 +506,19 @@
 
     tryPlay();
 
-    musicPlayer.addEventListener('click', () => {
-      if (music.paused) {
-        music.play();
-        discImg.classList.add('playing');
-        musicStatus.textContent = 'Đang phát...';
-      } else {
-        music.pause();
-        discImg.classList.remove('playing');
-        musicStatus.textContent = 'Tạm dừng';
-      }
-    });
+    if (musicPlayer) {
+      musicPlayer.addEventListener('click', () => {
+        if (music.paused) {
+          music.play();
+          discImg.classList.add('playing');
+          musicStatus.textContent = 'Đang phát...';
+        } else {
+          music.pause();
+          discImg.classList.remove('playing');
+          musicStatus.textContent = 'Tạm dừng';
+        }
+      });
+    }
 
     let hasInteracted = false;
     document.addEventListener('click', function firstInteraction(e) {
@@ -500,6 +536,32 @@
         tryPlay();
       }
     }, { once: true });
+
+    // 5. Fade on scroll - Intersection Observer
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-on-scroll');
+
+      if (!('IntersectionObserver' in window)) {
+        fadeElements.forEach(el => el.classList.add('visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.18   // hiện khi 18% phần tử vào viewport
+      });
+
+      fadeElements.forEach(el => observer.observe(el));
+    });
   </script>
 
 </body>
