@@ -6,7 +6,7 @@
   <title>Thiệp Mời Tốt Nghiệp — Nhất Hà</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Roboto:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton:wght@400;900&family=Dancing+Script:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Roboto:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,7 +16,7 @@
     body {
       background: #ffffff;
       color: #333;
-      font-family: 'Roboto', sans-serif;
+      font-family: 'EB Garamond', serif;
       line-height: 1.9;
       min-height: 100vh;
       padding: 20px 15px;
@@ -64,48 +64,65 @@
 
     .becoming-container {
       width: 100%;
-      margin: 20px 0;
+      margin: 40px 0;                  /* Cách trên và dưới bằng nhau */
       padding: 0;
       line-height: 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    }
+    .becoming-container.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .becoming-container img {
       width: 100%;
       height: auto;
       display: block;
-      margin: 0;
-      padding: 0;
-      border-radius: 0;
-      box-shadow: none;
+      object-fit: cover;
     }
 
     .welcome-text, .body-text {
-      font-size: 1.28rem;
+      font-size: 1.38rem;
       text-align: center;
       max-width: 820px;
       margin: 0 auto 30px;
+      font-weight: 400;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .welcome-text.visible, .body-text.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .title-main {
       font-family: 'Anton', sans-serif;
-      font-weight: 400;
-      font-size: 4.8rem;
-      color: #7d0e21;
+      font-weight: 900;
+      font-size: 5.2rem;
+      color: #b22222;
       text-align: center;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin: 0 0 30px 0;
+      letter-spacing: 0;
+      margin: 60px 0 50px 0;
       white-space: nowrap;
       display: block;
       line-height: 1.0;
-      max-width: 100%;
-      overflow: visible;
+      opacity: 0;
+      transform: translateY(-40px);
+      transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    }
+    .title-main.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .thanks-main {
-      font-family: 'Dancing Script', cursive;
+      font-family: 'EB Garamond', serif;
       font-style: italic;
-      font-weight: 800;
-      font-size: 1.45rem;
+      font-weight: 500;
+      font-size: 1.55rem;
       color: #000000;
       text-align: center;
       line-height: 1.7;
@@ -114,19 +131,37 @@
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-      text-shadow: 0 0 0.6px rgba(0,0,0,0.9), 0 0 1px rgba(0,0,0,0.7);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .thanks-main.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .thanks-text {
+      white-space: pre-wrap;
     }
 
     .thanks-long {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #555;
       text-align: left;
-      max-width: 720px;
+      max-width: 680px;
       margin: 40px auto;
-      padding-left: 80px;
-      line-height: 1.7;
+      padding-left: 100px;
+      line-height: 1.8;
       font-style: italic;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
     }
+    .thanks-long.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .heart {
       color: #e74c3c;
       font-size: 1.5rem;
@@ -142,6 +177,13 @@
       overflow: hidden;
       box-shadow: 0 12px 40px rgba(0,0,0,0.18);
       cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.3s ease-out, transform 1.3s ease-out;
+    }
+    .poster-section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .poster {
       position: absolute;
@@ -162,7 +204,15 @@
       margin: 60px auto 60px;
       max-width: 1100px;
       position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s ease-out, transform 1.2s ease-out;
     }
+    .carousel-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .carousel-container {
       overflow-x: auto;
       width: 100%;
@@ -187,29 +237,16 @@
       border-radius: 16px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.12);
       scroll-snap-align: center;
-      transition: transform 0.3s ease;
+      transition: transform 0.6s ease, opacity 1.2s ease-out;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .carousel-track img.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .carousel-track img:hover {
       transform: scale(1.05);
-    }
-
-    /* Swipe hint */
-    .swipe-hint {
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2.8rem;
-      color: #7d0e21;
-      opacity: 0.7;
-      pointer-events: none;
-      z-index: 5;
-      animation: swipeAnimate 2.2s ease-in-out infinite;
-      transition: opacity 0.8s ease;
-    }
-    @keyframes swipeAnimate {
-      0%, 100% { transform: translateX(-50%) translateY(0); }
-      50%      { transform: translateX(-50%) translateY(-12px); }
     }
 
     .invite-poster-container {
@@ -217,13 +254,26 @@
       margin: 60px auto;
       text-align: center;
       padding: 0 40px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    }
+    .invite-poster-container.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .invite-poster-container img {
       max-width: 100%;
       height: auto;
       border-radius: 20px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-      object-fit: contain;
+    }
+
+    .center-heart {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 1.5rem;
+      font-family: 'EB Garamond', serif;
     }
 
     .music-player {
@@ -253,49 +303,23 @@
       font-size: 1rem;
       color: #7d0e21;
       opacity: 0.9;
-    }
-
-    /* Hiệu ứng fade khi cuộn */
-    .fade-on-scroll {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.9s ease-out, transform 0.9s ease-out;
-    }
-    .fade-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
+      font-family: 'EB Garamond', serif;
     }
 
     /* Responsive */
     @media (max-width: 1024px) {
       .inner-content { padding: 0 30px 50px 30px; }
-      .becoming-container { margin: 25px 0; }
-      .profile-corner { top: 22px; right: 30px; }
-      .corner-profile { width: 80px; height: 80px; }
-      .music-player img { width: 90px; height: 90px; }
-      .music-player { bottom: 30px; right: 30px; }
+      .title-main { font-size: 4.5rem; margin: 50px 0 40px 0; }
     }
     @media (max-width: 768px) {
       .container { padding: 40px 0 0 0; }
       .inner-content { padding: 0 25px 50px 25px; }
-      .becoming-container { margin: 20px 0; }
-      .title-main { font-size: 3.8rem; }
-      .profile-corner { top: 18px; right: 25px; }
-      .corner-profile { width: 70px; height: 70px; border-width: 2.5px; }
-      .music-player img { width: 80px; height: 80px; }
-      .music-player { bottom: 25px; right: 25px; }
-      .music-player p { font-size: 0.9rem; }
-      .carousel-track img { flex: 0 0 45%; width: 45%; }
+      .title-main { font-size: 4rem; margin: 45px 0 35px 0; }
+      .thanks-long { padding-left: 60px; font-size: 0.9rem; }
     }
     @media (max-width: 480px) {
-      .inner-content { padding: 0 15px 50px 15px; }
-      .title-main { font-size: 3rem; }
-      .profile-corner { top: 15px; right: 20px; }
-      .corner-profile { width: 60px; height: 60px; }
-      .music-player img { width: 70px; height: 70px; }
-      .music-player { bottom: 20px; right: 20px; }
-      .music-player p { font-size: 0.85rem; }
-      .carousel-track img { flex: 0 0 70%; width: 70%; }
+      .title-main { font-size: 3.5rem; margin: 40px 0 30px 0; }
+      .thanks-long { padding-left: 40px; font-size: 0.85rem; }
     }
   </style>
 </head>
@@ -304,7 +328,7 @@
   <!-- Ảnh góc trên bên PHẢI -->
   <div class="profile-corner">
     <a href="https://greenwich.edu.vn/co-nang-2k3-tro-thanh-thu-linh-sinh-vien-tai-greenwich-viet-nam-co-so-ha-noi/?fbclid=IwY2xjawPlvhlleHRuA2FlbQIxMABicmlkETFCMnEzamdHU2VuUHdFeUtTc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHgVVODO1696HGmOko1R06i4C3_99BI1Kwsa5OJVfPQecmCubAdjdVzN-LCxO_aem_pBF7vg9c5q0O0rBpuWHj_w" 
-    target="_blank" rel="noopener noreferrer" title="Thủ lĩnh Greenwich 2023">
+       target="_blank" rel="noopener noreferrer" title="Thủ lĩnh Greenwich 2023">
       <img src="poster_1.png" alt="Nhất Hà" class="corner-profile">
     </a>
   </div>
@@ -336,7 +360,6 @@
       </div>
 
       <div class="carousel-section fade-on-scroll">
-        <!-- <div class="swipe-hint" id="swipeHint"> Vuốt sang trái / phải</div> -->
         <div class="carousel-container" id="carousel">
           <div class="carousel-track" id="track">
             <img src="1.png" alt="Kỷ niệm 1">
@@ -401,20 +424,14 @@
       </div>
 
       <div class="thanks-main fade-on-scroll">
-        Tớ chỉ muốn nói là cảm ơn rất nhiều.<br>
-        Cảm ơn tất cả những người bạn đã xuất hiện trong suốt 22 năm vừa qua của tớ,<br>
-        cảm ơn tất cả người anh người chị đã cho em thêm định hướng,<br>
-        cảm ơn những người em đã ở bên cạnh, cùng chị lớn lên và học cách trưởng thành.<br><br>
-        Dù cậu vẫn đang ở đây,<br>
-        hay chúng ta đã không còn đồng hành cùng nhau nữa,<br>
-        tớ vẫn trân trọng và biết ơn tất cả những kỷ niệm mà chúng mình từng có.
+        <p class="thanks-text" id="thanksContent"></p>
       </div>
 
       <div class="invite-poster-container fade-on-scroll">
         <img src="date.png" alt="Lời mời tốt nghiệp">
       </div>
 
-      <p style="text-align: center; margin: 40px 0; font-size: 1.4rem;" class="fade-on-scroll">
+      <p class="center-heart fade-on-scroll">
         Cảm ơn cậu vì đã ở đây. <span class="heart">🤍</span>
       </p>
 
@@ -438,7 +455,17 @@
   </audio>
 
   <script>
-    // 1. Toggle poster
+    // Nội dung cảm ơn
+    const thanksMessage = `Tớ chỉ muốn nói là cảm ơn rất nhiều.
+Cảm ơn tất cả những người bạn đã xuất hiện trong suốt 22 năm vừa qua của tớ,
+cảm ơn tất cả người anh người chị đã cho em thêm định hướng,
+cảm ơn những người em đã ở bên cạnh, cùng chị lớn lên và học cách trưởng thành.
+
+Dù cậu vẫn đang ở đây,
+hay chúng ta đã không còn đồng hành cùng nhau nữa,
+tớ vẫn trân trọng và biết ơn tất cả những kỷ niệm mà chúng mình từng có.`;
+
+    // Toggle poster
     const posterToggle = document.getElementById('posterToggle');
     const poster1 = document.getElementById('poster1');
     const poster2 = document.getElementById('poster2');
@@ -457,7 +484,7 @@
       });
     }
 
-    // 2. Carousel loop khi cuộn đến cuối
+    // Carousel loop + hiện ảnh khi cuộn
     const carousel = document.getElementById('carousel');
     if (carousel) {
       carousel.addEventListener('scroll', () => {
@@ -467,25 +494,18 @@
         if (scrollLeft + clientWidth >= scrollWidth - 150) {
           carousel.scrollLeft = 0;
         }
+
+        const images = document.querySelectorAll('.carousel-track img');
+        images.forEach(img => {
+          const rect = img.getBoundingClientRect();
+          if (rect.left < window.innerWidth && rect.right > 0) {
+            img.classList.add('visible');
+          }
+        });
       });
     }
 
-    // 3. Ẩn swipe hint sau khi vuốt lần đầu
-    const swipeHint = document.getElementById('swipeHint');
-    let hasScrolledCarousel = false;
-    if (carousel && swipeHint) {
-      carousel.addEventListener('scroll', () => {
-        if (!hasScrolledCarousel) {
-          hasScrolledCarousel = true;
-          swipeHint.style.opacity = '0';
-          setTimeout(() => {
-            swipeHint.style.display = 'none';
-          }, 800);
-        }
-      }, { once: false });
-    }
-
-    // 4. Music player
+    // Music player
     const music = document.getElementById('bgMusic');
     const discImg = document.getElementById('discImg');
     const musicStatus = document.getElementById('musicStatus');
@@ -537,30 +557,43 @@
       }
     }, { once: true });
 
-    // 5. Fade on scroll - Intersection Observer
+    // Fade on scroll + typewriter
     document.addEventListener('DOMContentLoaded', () => {
       const fadeElements = document.querySelectorAll('.fade-on-scroll');
-
-      if (!('IntersectionObserver' in window)) {
-        fadeElements.forEach(el => el.classList.add('visible'));
-        return;
-      }
+      const thanksTextEl = document.getElementById('thanksContent');
+      let isTyping = false;
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+
+            if (entry.target.classList.contains('thanks-main') && !isTyping) {
+              isTyping = true;
+              thanksTextEl.classList.add('visible');
+              typeWriter(thanksTextEl, thanksMessage, 30);
+            }
           } else {
             entry.target.classList.remove('visible');
           }
         });
-      }, {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.18   // hiện khi 18% phần tử vào viewport
-      });
+      }, { threshold: 0.15 });
 
       fadeElements.forEach(el => observer.observe(el));
+
+      function typeWriter(element, text, speed) {
+        let i = 0;
+        element.textContent = '';
+
+        const interval = setInterval(() => {
+          if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(interval);
+          }
+        }, speed);
+      }
     });
   </script>
 
