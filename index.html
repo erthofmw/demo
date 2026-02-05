@@ -36,16 +36,16 @@
 
     .inner-content { padding:0 40px 50px 40px; }
 
-    /* Ảnh góc trên bên phải */
+    /* Ảnh góc trên bên phải - sát lề phải cực mạnh */
     .profile-corner {
       position:fixed;
-      top:25px;
-      right:35px;
+      top:18px;
+      right:10px;          /* sát lề phải hơn nữa */
       z-index:100;
     }
     .corner-profile {
-      width:90px;
-      height:90px;
+      width:65px;          /* nhỏ hơn để tránh đè khung */
+      height:65px;
       border-radius:50%;
       object-fit:cover;
       border:3px solid #ffffff;
@@ -116,7 +116,7 @@
 
     .thanks-main {
       position: relative;
-      min-height: 450px;               /* <-- Khoảng trống cố định - bạn có thể tăng/giảm */
+      min-height: 380px;
       font-size:1.25rem;
       color:#000;
       text-align:left;
@@ -283,17 +283,18 @@
       font-family:'EB Garamond', serif;
     }
 
+    /* Music player - sát lề phải & dưới cực mạnh */
     .music-player {
       position:fixed;
-      bottom:40px;
-      right:40px;
+      bottom:10px;         /* sát lề dưới hơn nữa */
+      right:10px;          /* sát lề phải hơn nữa */
       z-index:1000;
       text-align:center;
       cursor:pointer;
     }
     .music-player img {
-      width:100px;
-      height:100px;
+      width:65px;          /* nhỏ hơn để tránh đè khung thiệp */
+      height:65px;
       border-radius:50%;
       box-shadow:0 8px 20px rgba(0,0,0,0.3);
       transition:transform 0.4s ease;
@@ -306,14 +307,14 @@
       to { transform:rotate(360deg); }
     }
     .music-player p {
-      margin-top:10px;
-      font-size:1rem;
+      margin-top:4px;
+      font-size:0.88rem;
       color:#7d0e21;
       opacity:0.9;
       font-family:'EB Garamond', serif;
     }
 
-    /* Responsive */
+    /* Responsive - điều chỉnh sát lề cho mobile */
     @media (max-width:1024px) {
       .inner-content { padding:0 30px 50px 30px; }
       .title-main { font-size:4.5rem; margin:50px 0 40px 0; }
@@ -322,13 +323,21 @@
       .container { padding:40px 0 0 0; }
       .inner-content { padding:0 25px 50px 25px; }
       .title-main { font-size:4rem; margin:45px 0 35px 0; }
-      .thanks-main { min-height: 320px; }           /* tăng nhẹ cho mobile */
+      .thanks-main { min-height: 320px; }
       .thanks-long { padding-left:60px; font-size:0.9rem; }
+      .profile-corner { right:12px; top:15px; }
+      .music-player { right:12px; bottom:8px; }
+      .music-player img { width:75px; height:75px; }
     }
     @media (max-width:480px) {
       .title-main { font-size:3.5rem; margin:40px 0 30px 0; }
-      .thanks-main { min-height: 340px; }           /* tăng thêm cho màn nhỏ */
+      .thanks-main { min-height: 340px; }
       .thanks-long { padding-left:40px; font-size:0.85rem; }
+      .profile-corner { right:8px; top:12px; }
+      .corner-profile { width:60px; height:60px; border-width:2px; }
+      .music-player { right:8px; bottom:6px; }
+      .music-player img { width:65px; height:65px; }
+      .music-player p { font-size:0.85rem; margin-top:3px; }
     }
   </style>
 </head>
@@ -576,7 +585,7 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
             if (entry.target.classList.contains('thanks-main') && !isTyping) {
               isTyping = true;
               thanksTextEl.classList.add('visible');
-              typeWriter(thanksTextEl, thanksMessage, 20);
+              typeWriter(thanksTextEl, thanksMessage, 30);
             }
           } else {
             entry.target.classList.remove('visible');
