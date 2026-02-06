@@ -58,6 +58,28 @@
       border-color:#4d5768;
     }
 
+    /* TIÊU ĐỀ ẢNH - ĐÃ TỐI ƯU CẮT KHOẢNG TRẮNG & CĂN CHỈNH */
+    .title-image-container {
+      text-align:center;
+      margin:35px 0 25px 0;           /* giảm margin để sát khung hơn */
+      opacity:0;
+      transform:translateY(-40px);
+      transition:opacity 1.2s ease-out, transform 1.2s ease-out;
+    }
+    .title-image-container.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+    .title-image {
+      width: 100%;
+      max-width: 960px;               /* giới hạn tối đa để vừa khung thiệp */
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      object-fit: contain;
+      padding: 0 10px;                /* padding nhỏ để tránh sát lề quá */
+    }
+
     .becoming-container {
       width:100%;
       margin:40px 0;
@@ -93,89 +115,7 @@
       transform:translateY(0);
     }
 
-    .title-main {
-      font-family:'Anton', sans-serif;
-      font-weight:900;
-      font-size:5.2rem;
-      color:#b22222;
-      text-align:center;
-      text-transform:uppercase;
-      letter-spacing:0;
-      margin:60px 0 50px 0;
-      white-space:nowrap;
-      display:block;
-      line-height:1.0;
-      opacity:0;
-      transform:translateY(-40px);
-      transition:opacity 1.2s ease-out, transform 1.2s ease-out;
-    }
-    .title-main.visible {
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    /* Phần cảm ơn - bỏ background, giãn ngang vừa khung, chữ nhỏ, căn trái */
-    .thanks-main {
-      position: relative;
-      min-height: 400px;
-      font-size:1.1rem;
-      color:#000;
-      text-align:left;
-      line-height:2.4;
-      margin:60px auto 50px;
-      padding:0 40px;
-      max-width:960px;
-      opacity:0;
-      transform:translateY(40px);
-      transition:opacity 1s ease-out, transform 1s ease-out;
-      background: none;
-      border-radius: 0;
-    }
-    .thanks-main.visible {
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .thanks-text {
-      position: absolute;
-      inset: 0;
-      padding: 1.6rem 0;
-      height: 100%;
-      overflow: hidden;
-
-      font-family:"Playwrite CU Guides", cursive;
-      font-weight:400;
-      font-style:normal;
-      font-size:1.1rem;
-      line-height:2.4;
-      letter-spacing:0.3px;
-      white-space:pre-wrap;
-      text-align:left;
-      max-width:100%;
-      margin:0;
-      color: #222;
-      text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05);
-    }
-
-    .thanks-long {
-      font-size:0.85rem;
-      color:#555;
-      text-align:left;
-      max-width:680px;
-      margin:40px auto;
-      padding-left:100px;
-      line-height:1.8;
-      font-style:italic;
-      opacity:0;
-      transform:translateY(40px);
-      transition:opacity 1s ease-out, transform 1s ease-out;
-    }
-    .thanks-long.visible {
-      opacity:1;
-      transform:translateY(0);
-    }
-
-    .heart { color:#e74c3c; font-size:1.5rem; }
+    .title-main { display: none; } /* ẩn nếu còn sót class cũ */
 
     .poster-section {
       position:relative;
@@ -258,6 +198,67 @@
       transform:scale(1.05);
     }
 
+    .thanks-main {
+      position: relative;
+      min-height: 400px;
+      font-size:1.1rem;
+      color:#000;
+      text-align:left;
+      line-height:2.4;
+      margin:60px auto 50px;
+      padding:0 40px;
+      max-width:960px;
+      opacity:0;
+      transform:translateY(40px);
+      transition:opacity 1s ease-out, transform 1s ease-out;
+      background: none;
+      border-radius: 0;
+    }
+    .thanks-main.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .thanks-text {
+      position: absolute;
+      inset: 0;
+      padding: 1.6rem 0;
+      height: 100%;
+      overflow: hidden;
+      font-family:"Playwrite CU Guides", cursive;
+      font-weight:400;
+      font-style:normal;
+      font-size:1.1rem;
+      line-height:2.4;
+      letter-spacing:0.3px;
+      white-space:pre-wrap;
+      text-align:left;
+      max-width:100%;
+      margin:0;
+      color: #222;
+      text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05);
+    }
+
+    .thanks-long {
+      font-size:0.85rem;
+      color:#555;
+      text-align:left;
+      max-width:680px;
+      margin:40px auto;
+      padding-left:100px;
+      line-height:1.8;
+      font-style:italic;
+      opacity:0;
+      transform:translateY(40px);
+      transition:opacity 1s ease-out, transform 1s ease-out;
+    }
+    .thanks-long.visible {
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .heart { color:#e74c3c; font-size:1.5rem; }
+
     .invite-poster-container {
       width:100%;
       margin:60px auto;
@@ -315,123 +316,52 @@
       font-family:'EB Garamond', serif;
     }
 
-    /* ──────────────────────────────────────────────
-       RESPONSIVE - đã chỉnh thêm cho mobile để chữ nhỏ hơn & carousel to hơn
-    ────────────────────────────────────────────── */
-
-    /* PC ≥ 1024px: giữ nguyên */
-
-    /* Tablet: 740px – 1023px (giữ nguyên như cũ) */
+    /* RESPONSIVE */
     @media (min-width: 740px) and (max-width: 1023px) {
       body { padding: 18px 12px; }
       .container { padding: 45px 0; border-radius: 16px; }
       .inner-content { padding: 0 30px 45px; }
       .profile-corner { top: 16px; right: 12px; }
       .corner-profile { width: 60px; height: 60px; }
-      .title-main { font-size: 4.6rem; margin: 55px 0 45px; }
+      .title-image-container { margin: 30px 0 20px; }
+      .title-image { max-width: 920px; padding: 0 15px; }
       .welcome-text, .body-text { font-size: 1.32rem; max-width: 760px; }
-      .thanks-main { 
-        min-height: 380px; 
-        font-size: 1.05rem; 
-        line-height: 2.35; 
-        padding: 0 30px; 
-        max-width: 920px; 
-      }
+      .thanks-main { min-height: 380px; font-size: 1.05rem; line-height: 2.35; padding: 0 30px; max-width: 920px; }
       .thanks-text { font-size: 1.05rem; line-height: 2.35; padding: 1.4rem 0; }
       .poster-section { max-width: 720px; margin: 25px auto 35px; }
-      .carousel-track img { flex: 0 0 38%; width: 38%; gap: 20px; }
-      .music-player { bottom: 12px; right: 12px; }
+      .carousel-track img { flex: 0 0 38%; width: 38%; }
       .music-player img { width: 75px; height: 75px; }
-      .music-player p { font-size: 0.92rem; }
     }
 
-    /* Mobile: < 740px - chữ nhỏ hơn, carousel to hơn */
     @media (max-width: 739px) {
       body { padding: 12px 8px; }
       .container { padding: 30px 0; border-radius: 14px; }
       .inner-content { padding: 0 15px 35px; }
-
       .profile-corner { top: 12px; right: 8px; }
       .corner-profile { width: 50px; height: 50px; border-width: 2px; }
-
-      .title-main { 
-        font-size: 3.4rem; 
-        margin: 40px 0 25px; 
-        letter-spacing: -0.8px; 
-        white-space: normal; 
-        line-height: 1.05; 
-      }
-      .welcome-text, .body-text { 
-        font-size: 1.12rem; 
-        line-height: 1.7; 
-        max-width: 100%; 
-      }
-      .thanks-main { 
-        min-height: 380px; 
-        font-size: 0.98rem;        /* chữ nhỏ hơn để phù hợp màn hình nhỏ */
-        line-height: 2.35; 
-        margin: 45px 0 35px; 
-        padding: 0 12px; 
-        max-width: 100%; 
-      }
-      .thanks-text { 
-        font-size: 0.98rem; 
-        line-height: 2.35; 
-        padding: 1.1rem 0; 
-      }
-      .thanks-long { 
-        font-size: 0.88rem; 
-        padding-left: 0; 
-        text-align: center; 
-        max-width: 100%; 
-        margin: 25px auto; 
-      }
-      .poster-section { 
-        max-width: 100%; 
-        margin: 18px auto 25px; 
-        border-radius: 14px; 
-      }
-      .carousel-section { margin: 40px auto 30px; }
-      .carousel-track { 
-        gap: 12px; 
-        padding: 0 10px; 
-      }
-      .carousel-track img { 
-        flex: 0 0 82%;           /* khung kéo ảnh to hơn trên mobile */
-        width: 82%; 
-        border-radius: 12px; 
-      }
-      .invite-poster-container { padding: 0 12px; margin: 40px auto; }
-      .center-heart { font-size: 1.35rem; margin: 25px 0; }
-      .music-player { bottom: 10px; right: 10px; }
+      .title-image-container { margin: 25px 0 15px; }
+      .title-image { max-width: 100%; padding: 0 8px; }
+      .welcome-text, .body-text { font-size: 1.12rem; line-height: 1.7; max-width: 100%; }
+      .thanks-main { min-height: 380px; font-size: 0.98rem; line-height: 2.35; margin: 45px 0 35px; padding: 0 12px; }
+      .thanks-text { font-size: 0.98rem; line-height: 2.35; padding: 1.1rem 0; }
+      .thanks-long { font-size: 0.88rem; padding-left: 0; text-align: center; margin: 25px auto; }
+      .poster-section { max-width: 100%; margin: 18px auto 25px; border-radius: 14px; }
+      .carousel-track { gap: 12px; padding: 0 10px; }
+      .carousel-track img { flex: 0 0 82%; width: 82%; border-radius: 12px; }
       .music-player img { width: 65px; height: 65px; }
-      .music-player p { font-size: 0.88rem; margin-top: 5px; }
     }
 
-    /* Mobile rất nhỏ < 480px - tinh chỉnh thêm cho điện thoại nhỏ */
     @media (max-width: 479px) {
-      .title-main { font-size: 3.0rem; margin: 35px 0 20px; }
-      .thanks-main { 
-        min-height: 400px; 
-        font-size: 0.94rem;        /* chữ còn nhỏ hơn nữa */
-        line-height: 2.3; 
-        padding: 0 10px; 
-      }
-      .thanks-text { 
-        font-size: 0.94rem; 
-        line-height: 2.3; 
-        padding: 1rem 0; 
-      }
-      .thanks-long { font-size: 0.86rem; }
+      .title-image-container { margin: 20px 0 10px; }
+      .title-image { padding: 0 5px; }
+      .thanks-main { min-height: 400px; font-size: 0.94rem; line-height: 2.3; padding: 0 10px; }
+      .thanks-text { font-size: 0.94rem; line-height: 2.3; padding: 1rem 0; }
       .carousel-track img { flex: 0 0 85%; width: 85%; }
       .music-player img { width: 60px; height: 60px; }
-      .music-player p { font-size: 0.85rem; margin-top: 4px; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Giữ nguyên toàn bộ phần body của bạn -->
 
   <div class="profile-corner">
     <a href="https://greenwich.edu.vn/co-nang-2k3-tro-thanh-thu-linh-sinh-vien-tai-greenwich-viet-nam-co-so-ha-noi/?fbclid=IwY2xjawPlvhlleHRuA2FlbQIxMABicmlkETFCMnEzamdHU2VuUHdFeUtTc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHgVVODO1696HGmOko1R06i4C3_99BI1Kwsa5OJVfPQecmCubAdjdVzN-LCxO_aem_pBF7vg9c5q0O0rBpuWHj_w" 
@@ -442,7 +372,11 @@
 
   <div class="container">
     <div class="inner-content">
-      <h1 class="title-main fade-on-scroll">NHAT HA - BECOMING</h1>
+
+      <!-- Tiêu đề ảnh đã tối ưu -->
+      <div class="title-image-container fade-on-scroll">
+        <img src="text.png" alt="Nhất Hà - Becoming" class="title-image">
+      </div>
 
       <div class="poster-section fade-on-scroll" id="posterToggle">
         <img class="poster active" src="poster_1.png" alt="Poster 1" id="poster1">
@@ -549,13 +483,12 @@
     </div>
   </div>
 
-  <!-- Nút đĩa than -->
+  <!-- Music player -->
   <div class="music-player" id="musicPlayer">
     <img src="diathan.jpg" alt="Đĩa than" id="discImg">
     <p id="musicStatus">Nhấn để phát nhạc</p>
   </div>
 
-  <!-- Audio -->
   <audio id="bgMusic" loop preload="auto">
     <source src="vitamin_c.mp3" type="audio/mpeg">
     Trình duyệt không hỗ trợ audio.
@@ -587,7 +520,7 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
       });
     }
 
-    // Carousel loop + hiện ảnh khi cuộn
+    // Carousel auto loop khi cuộn đến cuối
     const carousel = document.getElementById('carousel');
     if (carousel) {
       carousel.addEventListener('scroll', () => {
@@ -598,8 +531,7 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
           carousel.scrollLeft = 0;
         }
 
-        const images = document.querySelectorAll('.carousel-track img');
-        images.forEach(img => {
+        document.querySelectorAll('.carousel-track img').forEach(img => {
           const rect = img.getBoundingClientRect();
           if (rect.left < window.innerWidth && rect.right > 0) {
             img.classList.add('visible');
@@ -687,7 +619,6 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
       function typeWriter(element, text, speed) {
         let i = 0;
         element.textContent = '';
-
         const interval = setInterval(() => {
           if (i < text.length) {
             element.textContent += text.charAt(i);
