@@ -539,85 +539,91 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
     }
 
     // Carousel auto loop
-    // Carousel auto scroll left
-// ===== Carousel 2 ảnh 1 - chạy hết rồi quay về đầu =====
-const carousel = document.getElementById("carousel");
-const track = document.getElementById("track");
+      const carousel = document.getElementById("carousel");
+      const track = document.getElementById("track");
 
-if (carousel && track) {
+      if (carousel && track) {
 
-  const gap = 24;
-  const visibleImages = 2;
-  const totalImages = 29;
+        const gap = 24;
+        const visibleImages = 2;
+        const totalImages = 29;
 
-  const imageWidth = carousel.offsetWidth / visibleImages;
-  const scrollStep = imageWidth + gap;
+        const imageWidth = carousel.offsetWidth / visibleImages;
+        const scrollStep = imageWidth + gap;
 
-  const pauseTime = 1500;
-  const scrollDuration = 800;
+        const pauseTime = 2200;
+        const scrollDuration = 1200;
 
-  let currentIndex = 0;
-  let isPaused = false;
+        let currentIndex = 0;
+        let isPaused = false;
 
-  function smoothScroll(start, end, duration, callback) {
-    let startTime = null;
+        function smoothScroll(start, end, duration, callback) {
+          let startTime = null;
 
-    function animate(time) {
-      if (!startTime) startTime = time;
-      const progress = time - startTime;
-      const percent = Math.min(progress / duration, 1);
+          function animate(time) {
+            if (!startTime) startTime = time;
+            const progress = time - startTime;
+            const percent = Math.min(progress / duration, 1);
 
-      const ease = percent < 0.5
-        ? 2 * percent * percent
-        : 1 - Math.pow(-2 * percent + 2, 2) / 2;
+            const ease = percent < 0.5
+              ? 2 * percent * percent
+              : 1 - Math.pow(-2 * percent + 2, 2) / 2;
 
-      carousel.scrollLeft = start + (end - start) * ease;
+            carousel.scrollLeft = start + (end - start) * ease;
 
-      if (percent < 1) {
-        requestAnimationFrame(animate);
-      } else if (callback) {
-        callback();
+            if (percent < 1) {
+              requestAnimationFrame(animate);
+            } else if (callback) {
+              callback();
+            }
+          }
+
+          requestAnimationFrame(animate);
+        }
+
+        function autoSlide() {
+
+          if (isPaused) {
+            setTimeout(autoSlide, pauseTime);
+            return;
+          }
+
+          // Nếu tới cuối
+          if (currentIndex >= totalImages - visibleImages) {
+
+            setTimeout(() => {
+
+              // cuộn nhanh về đầu (animation nhanh)
+              smoothScroll(
+                carousel.scrollLeft,
+                0,
+                250, // ⚡ giảm xuống 200–300ms là rất nhanh
+                () => {
+                  currentIndex = 0;
+                  setTimeout(autoSlide, pauseTime);
+                }
+              );
+
+            }, pauseTime);
+
+            return;
+          }
+
+          const start = carousel.scrollLeft;
+          const end = start + scrollStep;
+
+          smoothScroll(start, end, scrollDuration);
+
+          currentIndex += visibleImages;
+
+          setTimeout(autoSlide, scrollDuration + pauseTime);
+        }
+
+        setTimeout(autoSlide, pauseTime);
+
+        carousel.addEventListener("mouseenter", () => isPaused = true);
+        carousel.addEventListener("mouseleave", () => isPaused = false);
       }
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  function autoSlide() {
-
-    if (isPaused) {
-      setTimeout(autoSlide, pauseTime);
-      return;
-    }
-
-    // Nếu tới cuối
-    if (currentIndex >= totalImages - visibleImages) {
-
-      setTimeout(() => {
-        smoothScroll(carousel.scrollLeft, 0, 600, () => {
-          currentIndex = 0;
-          setTimeout(autoSlide, pauseTime);
-        });
-      }, pauseTime);
-
-      return;
-    }
-
-    const start = carousel.scrollLeft;
-    const end = start + scrollStep;
-
-    smoothScroll(start, end, scrollDuration);
-
-    currentIndex += visibleImages;
-
-    setTimeout(autoSlide, scrollDuration + pauseTime);
-  }
-
-  setTimeout(autoSlide, pauseTime);
-
-  carousel.addEventListener("mouseenter", () => isPaused = true);
-  carousel.addEventListener("mouseleave", () => isPaused = false);
-}
 
 
     // Music player
