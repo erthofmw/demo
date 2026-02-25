@@ -58,10 +58,10 @@
       border-color:#4d5768;
     }
 
-    /* TIÊU ĐỀ ẢNH - ĐÃ TỐI ƯU CẮT KHOẢNG TRẮNG & CĂN CHỈNH */
+    /* TIÊU ĐỀ ẢNH */
     .title-image-container {
       text-align:center;
-      margin:35px 0 25px 0;           /* giảm margin để sát khung hơn */
+      margin:35px 0 25px 0;
       opacity:0;
       transform:translateY(-40px);
       transition:opacity 1.2s ease-out, transform 1.2s ease-out;
@@ -72,12 +72,12 @@
     }
     .title-image {
       width: 100%;
-      max-width: 960px;               /* giới hạn tối đa để vừa khung thiệp */
+      max-width: 960px;
       height: auto;
       display: block;
       margin: 0 auto;
       object-fit: contain;
-      padding: 0 10px;                /* padding nhỏ để tránh sát lề quá */
+      padding: 0 10px;
     }
 
     .becoming-container {
@@ -115,7 +115,7 @@
       transform:translateY(0);
     }
 
-    .title-main { display: none; } /* ẩn nếu còn sót class cũ */
+    .title-main { display: none; }
 
     .poster-section {
       position:relative;
@@ -164,12 +164,10 @@
     }
 
     .carousel-container {
-      overflow-x:auto;
-      width:100%;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      scrollbar-width:none;
-      -ms-overflow-style:none;
+      overflow-x: hidden;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
     }
     .carousel-container::-webkit-scrollbar { display:none; }
 
@@ -178,6 +176,7 @@
       gap:24px;
       padding:0 20px;
     }
+
     .carousel-track img {
       flex:0 0 30%;
       width:30%;
@@ -185,11 +184,9 @@
       object-fit:cover;
       border-radius:16px;
       box-shadow:0 6px 20px rgba(0,0,0,0.12);
-      scroll-snap-align:center;
-      transition:transform 0.6s ease, opacity 1.2s ease-out;
-      opacity:0;
-      transform:translateY(40px);
+      scroll-snap-align: unset;
     }
+    
     .carousel-track img.visible {
       opacity:1;
       transform:translateY(0);
@@ -211,8 +208,6 @@
       opacity:0;
       transform:translateY(40px);
       transition:opacity 1s ease-out, transform 1s ease-out;
-      background: none;
-      border-radius: 0;
     }
     .thanks-main.visible {
       opacity:1;
@@ -234,13 +229,13 @@
       white-space:pre-wrap;
       text-align:left;
       max-width:100%;
-      margin:0;
+      margin: 0 56px 0 52px;
       color: #222;
       text-shadow: 0.5px 0.5px 1px rgba(0,0,0,0.05);
     }
 
     .thanks-long {
-      font-size:0.85rem;
+      font-size:1rem;
       color:#555;
       text-align:left;
       max-width:680px;
@@ -316,7 +311,10 @@
       font-family:'EB Garamond', serif;
     }
 
-    /* RESPONSIVE */
+    /* ──────────────────────────────────────────────
+       RESPONSIVE - Đã chỉnh sửa để chữ typewriter nhỏ hơn trên mobile
+    ────────────────────────────────────────────── */
+
     @media (min-width: 740px) and (max-width: 1023px) {
       body { padding: 18px 12px; }
       .container { padding: 45px 0; border-radius: 16px; }
@@ -342,9 +340,20 @@
       .title-image-container { margin: 25px 0 15px; }
       .title-image { max-width: 100%; padding: 0 8px; }
       .welcome-text, .body-text { font-size: 1.12rem; line-height: 1.7; max-width: 100%; }
-      .thanks-main { min-height: 380px; font-size: 0.98rem; line-height: 2.35; margin: 45px 0 35px; padding: 0 12px; }
-      .thanks-text { font-size: 0.98rem; line-height: 2.35; padding: 1.1rem 0; }
-      .thanks-long { font-size: 0.88rem; padding-left: 0; text-align: center; margin: 25px auto; }
+      
+      /* Phần cảm ơn - đã tối ưu cho mobile */
+      .thanks-main {
+        min-height: 320px;
+        margin: 40px 0 70px;          /* tăng margin-bottom để đẩy ảnh date.png xuống thấp hơn */
+        padding: 0 12px;
+      }
+      .thanks-text {
+        font-size: 0.92rem;           /* nhỏ hơn nữa */
+        line-height: 2.1;
+        padding: 0.9rem 14px;         /* có lề trái phải để chữ không sát mép */
+        letter-spacing: 0.1px;
+      }
+
       .poster-section { max-width: 100%; margin: 18px auto 25px; border-radius: 14px; }
       .carousel-track { gap: 12px; padding: 0 10px; }
       .carousel-track img { flex: 0 0 82%; width: 82%; border-radius: 12px; }
@@ -354,8 +363,16 @@
     @media (max-width: 479px) {
       .title-image-container { margin: 20px 0 10px; }
       .title-image { padding: 0 5px; }
-      .thanks-main { min-height: 400px; font-size: 0.94rem; line-height: 2.3; padding: 0 10px; }
-      .thanks-text { font-size: 0.94rem; line-height: 2.3; padding: 1rem 0; }
+      .thanks-main {
+        min-height: 300px;
+        margin: 35px 0 80px;          /* tăng thêm margin-bottom cho màn hình rất nhỏ */
+      }
+      .thanks-text {
+        font-size: 0.86rem;           /* nhỏ nhất có thể mà vẫn đọc được */
+        line-height: 2.0;
+        padding: 0.8rem 12px;
+        letter-spacing: 0.05px;
+      }
       .carousel-track img { flex: 0 0 85%; width: 85%; }
       .music-player img { width: 60px; height: 60px; }
     }
@@ -373,7 +390,6 @@
   <div class="container">
     <div class="inner-content">
 
-      <!-- Tiêu đề ảnh đã tối ưu -->
       <div class="title-image-container fade-on-scroll">
         <img src="text.png" alt="Nhất Hà - Becoming" class="title-image">
       </div>
@@ -431,7 +447,7 @@
             <img src="26.png" alt="Kỷ niệm 26">
             <img src="27.png" alt="Kỷ niệm 27">
             <img src="28.jpg" alt="Kỷ niệm 28">
-            <img src="29.jpg" alt="Kỷ niệm 29">
+            <img src="29.png" alt="Kỷ niệm 29">
             <!-- Duplicate để loop mượt -->
             <img src="1.png" alt="Kỷ niệm 1">
             <img src="2.png" alt="Kỷ niệm 2">
@@ -461,7 +477,7 @@
             <img src="26.png" alt="Kỷ niệm 26">
             <img src="27.png" alt="Kỷ niệm 27">
             <img src="28.jpg" alt="Kỷ niệm 28">
-            <img src="29.jpg" alt="Kỷ niệm 29">
+            <img src="29.png" alt="Kỷ niệm 29">
           </div>
         </div>
       </div>
@@ -522,25 +538,87 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
       });
     }
 
-    // Carousel auto loop khi cuộn đến cuối
-    const carousel = document.getElementById('carousel');
-    if (carousel) {
-      carousel.addEventListener('scroll', () => {
-        const scrollLeft = carousel.scrollLeft;
-        const scrollWidth = carousel.scrollWidth;
-        const clientWidth = carousel.clientWidth;
-        if (scrollLeft + clientWidth >= scrollWidth - 150) {
-          carousel.scrollLeft = 0;
-        }
+    // Carousel auto loop
+    // Carousel auto scroll left
+// ===== Carousel 2 ảnh 1 - chạy hết rồi quay về đầu =====
+const carousel = document.getElementById("carousel");
+const track = document.getElementById("track");
 
-        document.querySelectorAll('.carousel-track img').forEach(img => {
-          const rect = img.getBoundingClientRect();
-          if (rect.left < window.innerWidth && rect.right > 0) {
-            img.classList.add('visible');
-          }
-        });
-      });
+if (carousel && track) {
+
+  const gap = 24;
+  const visibleImages = 2;
+  const totalImages = 29;
+
+  const imageWidth = carousel.offsetWidth / visibleImages;
+  const scrollStep = imageWidth + gap;
+
+  const pauseTime = 1500;
+  const scrollDuration = 800;
+
+  let currentIndex = 0;
+  let isPaused = false;
+
+  function smoothScroll(start, end, duration, callback) {
+    let startTime = null;
+
+    function animate(time) {
+      if (!startTime) startTime = time;
+      const progress = time - startTime;
+      const percent = Math.min(progress / duration, 1);
+
+      const ease = percent < 0.5
+        ? 2 * percent * percent
+        : 1 - Math.pow(-2 * percent + 2, 2) / 2;
+
+      carousel.scrollLeft = start + (end - start) * ease;
+
+      if (percent < 1) {
+        requestAnimationFrame(animate);
+      } else if (callback) {
+        callback();
+      }
     }
+
+    requestAnimationFrame(animate);
+  }
+
+  function autoSlide() {
+
+    if (isPaused) {
+      setTimeout(autoSlide, pauseTime);
+      return;
+    }
+
+    // Nếu tới cuối
+    if (currentIndex >= totalImages - visibleImages) {
+
+      setTimeout(() => {
+        smoothScroll(carousel.scrollLeft, 0, 600, () => {
+          currentIndex = 0;
+          setTimeout(autoSlide, pauseTime);
+        });
+      }, pauseTime);
+
+      return;
+    }
+
+    const start = carousel.scrollLeft;
+    const end = start + scrollStep;
+
+    smoothScroll(start, end, scrollDuration);
+
+    currentIndex += visibleImages;
+
+    setTimeout(autoSlide, scrollDuration + pauseTime);
+  }
+
+  setTimeout(autoSlide, pauseTime);
+
+  carousel.addEventListener("mouseenter", () => isPaused = true);
+  carousel.addEventListener("mouseleave", () => isPaused = false);
+}
+
 
     // Music player
     const music = document.getElementById('bgMusic');
