@@ -534,6 +534,133 @@
       z-index:1;
     } */
 
+    .album-section {
+      margin: 80px auto;
+      max-width: 1100px;
+      padding: 0 20px;
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    /* ảnh mặc định */
+    .album-grid img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    /* hover nhẹ */
+    .album-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    /* ảnh ngang chiếm 2 cột */
+    .album-grid img.landscape {
+      grid-column: span 2;
+      height: 200px;
+    }
+
+    /* ===== Pinterest Masonry ===== */
+    .album-section {
+      max-width: 1100px;
+      margin: 100px auto;
+      padding: 0 20px;
+    }
+
+    .album-masonry {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    /* ảnh thường (dọc) */
+    .album-masonry img {
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      object-fit: cover;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    /* hover */
+    .album-masonry img:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    }
+
+    /* 🔥 ảnh ngang = 2 ảnh / 1 hàng */
+    .album-masonry img.landscape {
+      grid-column: span 2;
+    }
+
+
+    /* ===== Lightbox ===== */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.4s ease;
+    }
+
+    .lightbox.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      animation: zoomIn 0.4s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .close {
+      position: absolute;
+      top: 25px;
+      right: 30px;
+      font-size: 40px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1023px) {
+      .album-masonry {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 739px) {
+      .album-masonry {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .album-masonry {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
@@ -634,6 +761,71 @@
       </p>
     </div>
   </div>
+  <div class="album-section">
+    <div class="album-masonry" id="albumMasonry">
+
+<img src="album/1.webp" loading="lazy">
+      <img src="album/2.webp" loading="lazy">
+      <img src="album/3.webp" loading="lazy">
+      <img src="album/4.webp" loading="lazy">
+      <img src="album/5.webp" loading="lazy">
+      <img src="album/6.webp" loading="lazy">
+      <img src="album/7.webp" loading="lazy">
+      <img src="album/8.webp" loading="lazy">
+      <img src="album/10.webp" loading="lazy">
+      <img src="album/11.webp" loading="lazy">
+      <img src="album/111.webp" loading="lazy">
+
+      <img src="album/9.webp" loading="lazy">
+
+      <img src="album/12.webp" loading="lazy">
+
+      <img src="album/14.webp" loading="lazy">
+      <img src="album/17.webp" loading="lazy">
+      <img src="album/13.webp" loading="lazy">
+
+      <img src="album/15.webp" loading="lazy">
+      <img src="album/16.webp" loading="lazy">
+
+      <img src="album/18.webp" loading="lazy">
+      <img src="album/19.webp" loading="lazy">
+      <img src="album/20.webp" loading="lazy">
+      <img src="album/21.webp" loading="lazy">
+      <img src="album/22.webp" loading="lazy">
+      <img src="album/23.webp" loading="lazy">
+      <img src="album/24.webp" loading="lazy">
+      <img src="album/25.webp" loading="lazy">
+      <img src="album/26.webp" loading="lazy">
+      <img src="album/27.webp" loading="lazy">
+      <img src="album/28.webp" loading="lazy">
+      <img src="album/29.webp" loading="lazy">
+      <img src="album/30.webp" loading="lazy">
+      <img src="album/31.webp" loading="lazy">
+      <img src="album/32.webp" loading="lazy">
+      <img src="album/33.webp" loading="lazy">
+      <img src="album/34.webp" loading="lazy">
+      <img src="album/35.webp" loading="lazy">
+      <img src="album/36.webp" loading="lazy">
+      <img src="album/37.webp" loading="lazy">
+      <img src="album/38.webp" loading="lazy">
+      <img src="album/39.webp" loading="lazy">
+      <img src="album/40.webp" loading="lazy">
+      <img src="album/41.webp" loading="lazy">
+      <img src="album/42.webp" loading="lazy">
+      <img src="album/43.webp" loading="lazy">
+      <img src="album/44.webp" loading="lazy">
+      <img src="album/45.webp" loading="lazy">
+
+    </div>
+  </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <span class="close">&times;</span>
+      <img class="lightbox-img" id="lightboxImg">
+    </div>
+  </div>
+
  </div>
 
   <!-- Music player -->
@@ -806,6 +998,63 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
     });
 
     updateStack();
+
+    // Detect ảnh ngang/dọc
+    const albumImages = document.querySelectorAll('#albumMasonry img');
+
+    albumImages.forEach(img => {
+      img.onload = function () {
+        if (this.naturalWidth > this.naturalHeight) {
+          this.classList.add('landscape');
+        }
+      };
+    });
+
+    const images = document.querySelectorAll('#albumMasonry img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.querySelector('.close');
+
+    let currentIndex = 0;
+
+    // mở ảnh
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => {
+        currentIndex = index;
+        showImage();
+      });
+    });
+
+    function showImage() {
+      lightboxImg.src = images[currentIndex].src;
+      lightbox.classList.add('show');
+    }
+
+    // đóng
+    closeBtn.onclick = () => lightbox.classList.remove('show');
+    lightbox.onclick = (e) => {
+      if (e.target === lightbox) lightbox.classList.remove('show');
+    };
+
+    // next / prev bằng bàn phím
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('show')) return;
+
+      if (e.key === 'ArrowRight') {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage();
+      }
+
+      if (e.key === 'ArrowLeft') {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage();
+      }
+
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('show');
+      }
+    });
+
   </script>
 
 </body>
