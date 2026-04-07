@@ -579,6 +579,7 @@
       gap: 12px;
     }
 
+
     /* ảnh thường (dọc) */
     .album-masonry img {
       width: 100%;
@@ -653,6 +654,16 @@
     @media (max-width: 739px) {
       .album-masonry {
         grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+
+      .album-masonry img {
+        width: 100%;
+        height: auto;
+      }
+
+      .album-masonry img.landscape {
+        grid-column: span 2;
       }
     }
 
@@ -743,6 +754,22 @@
     0 10px 40px rgba(0,0,0,0.9);
 
   animation: floatAlbumTitle 4s ease-in-out infinite; /* 🔥 thêm dòng này */
+}
+@media (max-width: 739px) {
+  .album-title-row {
+    top: -60px;
+    font-size: 2rem;
+    letter-spacing: 3px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .album-title-row {
+    top: -45px;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
 }
 
 
@@ -1138,11 +1165,17 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
     const albumImages = document.querySelectorAll('#albumMasonry img');
 
     albumImages.forEach(img => {
-      img.onload = function () {
-        if (this.naturalWidth > this.naturalHeight) {
-          this.classList.add('landscape');
+      function checkImage() {
+        if (img.naturalWidth > img.naturalHeight) {
+          img.classList.add('landscape');
         }
-      };
+      }
+
+      if (img.complete) {
+        checkImage();
+      } else {
+        img.onload = checkImage;
+      }
     });
 
     const images = document.querySelectorAll('#albumMasonry img');
