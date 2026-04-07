@@ -1165,17 +1165,11 @@ Dù cậu vẫn đang ở đây, hay chúng ta đã không còn đồng hành c�
     const albumImages = document.querySelectorAll('#albumMasonry img');
 
     albumImages.forEach(img => {
-      function checkImage() {
-        if (img.naturalWidth > img.naturalHeight) {
-          img.classList.add('landscape');
-        }
+      img.onload = function () {
+      if (this.naturalWidth > this.naturalHeight) {
+        this.classList.add('landscape');
       }
-
-      if (img.complete) {
-        checkImage();
-      } else {
-        img.onload = checkImage;
-      }
+    };
     });
 
     const images = document.querySelectorAll('#albumMasonry img');
