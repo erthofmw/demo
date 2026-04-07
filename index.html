@@ -710,6 +710,66 @@
       font-size: 1.6rem;
     }
   }
+
+  .album-masonry {
+  position: relative; /* 🔥 để title bám theo */
+}
+
+.album-title-row {
+  position: absolute;
+  top: -88px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  text-align: center;
+  width: 100%;
+
+  font-size: 4rem;
+  font-family: "Playfair Display", serif;
+  font-weight: 900;
+  color: #ffffff;
+
+  letter-spacing: 8px;
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  text-shadow:
+    0 0 20px rgba(255,255,255,0.8),
+    0 0 40px rgba(255,255,255,0.5),
+    0 10px 40px rgba(0,0,0,0.9);
+
+  animation: floatAlbumTitle 4s ease-in-out infinite; /* 🔥 thêm dòng này */
+}
+
+
+/* animation bay nhẹ */
+@keyframes floatAlbumTitle {
+  0%   { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+  25%  { transform: translateX(-50%) translateY(-8px) rotate(-1deg); }
+  50%  { transform: translateX(-50%) translateY(0px) rotate(1deg); }
+  75%  { transform: translateX(-50%) translateY(-5px) rotate(-0.5deg); }
+  100% { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+}
+
+
+
+@media (max-width: 739px) {
+  .album-title-overlay {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .album-title-overlay {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+  }
+}
   </style>
 </head>
 <body>
@@ -811,10 +871,36 @@
     </div>
   </div>
   <div class="album-section">
-      <p class="album-title">CAM ON VI DA DEN</p>
-    <div class="album-masonry" id="albumMasonry">
 
-<img src="album/1.webp" loading="lazy">
+    <div class="album-masonry" id="albumMasonry">
+      <div class="album-title-row">
+  <span style="transform:rotate(-10deg)">C</span>
+  <span style="transform:rotate(-6deg)">A</span>
+  <span style="transform:rotate(-2deg)">M</span>
+
+  <span style="width:20px"></span>
+
+  <span style="transform:rotate(2deg)">O</span>
+  <span style="transform:rotate(6deg)">N</span>
+
+  <span style="width:20px"></span>
+
+  <span style="transform:rotate(8deg)">V</span>
+  <span style="transform:rotate(10deg)">I</span>
+
+  <span style="width:20px"></span>
+
+  <span style="transform:rotate(6deg)">D</span>
+  <span style="transform:rotate(2deg)">A</span>
+
+  <span style="width:20px"></span>
+
+  <span style="transform:rotate(-2deg)">D</span>
+  <span style="transform:rotate(-6deg)">E</span>
+  <span style="transform:rotate(-10deg)">N</span>
+</div>
+
+      <img src="album/1.webp" loading="lazy">
       <img src="album/2.webp" loading="lazy">
       <img src="album/3.webp" loading="lazy">
 
